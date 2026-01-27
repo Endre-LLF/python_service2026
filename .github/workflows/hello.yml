@@ -20,4 +20,4 @@ jobs:
         pip install pylint
     - name: Run hello script
       run: |
-        pylint hello.py
+        pylint hello
