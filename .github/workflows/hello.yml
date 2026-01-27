@@ -1,23 +1,49 @@
 name: Hello CI/CD
 
-on: [push]
+# Trigger workflow only on changes to hello.py
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "hello.py"
 
 jobs:
-  build:
+  hello-check:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         python-version: ["3.12", "3.13", "3.14"]
+
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pylint
-    - name: Run hello script
-      run: |
-        python -m pylint hello.py
+      # 1️⃣ Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ Setup Python
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # 3️⃣ Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pylint ruff
+
+      # 4️⃣ Lint hello.py with pylint
+      - name: Lint hello.py with pylint
+        run: |
+          python -m pylint hello.py
+
+      # 5️⃣ Lint hello.py with ruff
+      - name: Lint hello.py with ruff
+        run: |
+          ruff hello.py
+
+      # 6️⃣ Run the script
+      - name: Run hello.py
+        run: |
+          python hello.py
