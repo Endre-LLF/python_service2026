@@ -10,8 +10,8 @@ def main():
     """
     Docstring for main
     """
-    url = "https://wttr.in/Tulcea?format=3"
-    response = requests.get(url, timeout=5)
+    url = "http://wttr.in/Tulcea"
+    response = requests.get(url, timeout=15)
     print("Weather info:", response.text)
 
 
