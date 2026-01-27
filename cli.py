@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
-import requests
+"""
+Docstring for cli
+"""
+
 import sys
+import requests
 
 
 def main():
-
+    """
+    Docstring for main
+    """
     if len(sys.argv) != 2:
         location = sys.argv[1]
 
@@ -12,7 +18,7 @@ def main():
         print("Usage: python main.py <location>")
         sys.exit(1)
     url = f"https://wttr.in/{location}"
-    response = requests.get(url)
+    response = requests.get(url, timeout=5)
     print(response.text)
 
 
