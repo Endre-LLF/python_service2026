@@ -14,3 +14,12 @@ repos:
     hooks:
     -   id: ruff-check
     -   id: ruff-format
+-  repo: https://github.com/pylint-dev/pylint
+   rev: v4.0.4
+   hooks:
+   - id: pylint
+     language: system
+     args:
+     - --init-hook="import sys; sys.path.append('src')"
+     - src/
+     - tests/
