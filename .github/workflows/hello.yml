@@ -21,3 +21,10 @@ jobs:
     - name: Run hello script
       run: |
         pylint hello.py
+    - name : Run ruff
+      run: |
+        ruff check .
+    - name : Run coverage
+      run: |
+        coverage run -m  pytest
+        coverage report -m

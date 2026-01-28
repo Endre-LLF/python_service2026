@@ -24,3 +24,10 @@ jobs:
     - name: Run python_setup.py
       run: |
         python python_setup.py
+    - name : Run ruff
+      run: |
+        ruff check .
+    - name : Run coverage
+      run: |
+        coverage run -m  pytest
+        coverage report -m
