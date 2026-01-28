@@ -22,7 +22,7 @@ jobs:
       run: |
         pylint $(git ls-files '*.py')
     - name : Run ruff
-      run: |        
+      run: |
         ruff check .
 
     - name : Run coverage
